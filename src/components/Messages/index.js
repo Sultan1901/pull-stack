@@ -83,6 +83,7 @@ function Message() {
                         alignItems="center"
                       >
                         <Button
+                          _hover={{ background: '#333333' }}
                           w="200px"
                           color="white"
                           mt="5"
@@ -93,6 +94,7 @@ function Message() {
                           Javascript Room
                         </Button>
                         <Button
+                          _hover={{ background: '#333333' }}
                           color="white"
                           mt="5"
                           m="3"
@@ -103,6 +105,7 @@ function Message() {
                           Python Room
                         </Button>
                         <Button
+                          _hover={{ background: '#333333' }}
                           color="white"
                           mt="5"
                           bg="#777"

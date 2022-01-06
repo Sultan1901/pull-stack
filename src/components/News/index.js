@@ -72,16 +72,17 @@ const News = () => {
                   </Text>
                 </VStack>
                 <br />
-                <Link
+              <Box pt='200px'>  <Link
                   target="blank"
                   color="rgb(57, 123, 245)"
                   href={e.url}
                   fontSize="15px"
-                  pt="88"
+                  top='100'
                   pr="3"
+                  
                 >
                   More
-                </Link>
+                </Link></Box>
               </HStack>
             </Box>
           ))}{' '}

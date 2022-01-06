@@ -193,7 +193,6 @@ const Posts = () => {
                     <Link
                       onClick={() => Nav(`/profile/${e.userId._id}`)}
                       mr="400"
-                      color="gold"
                       fontSize="12px"
                       as="strong"
                     >
@@ -210,7 +209,7 @@ const Posts = () => {
                     fontFamily="mono"
                     color="black"
                   >
-                    {e.title}
+                    {e.title} ?
                   </Text>
                   <HStack>
                     {' '}
@@ -237,7 +236,6 @@ const Posts = () => {
                       as="strong"
                       fontSize="12px"
                       fontFamily="Roman"
-                      color="gold"
                     >
                       {e.like.length}
                     </Text>

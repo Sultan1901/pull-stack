@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   background: rgb(48, 47, 47);
   height: 85px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,7 @@ export const NavLogo = styled(Link)`
 
 export const NavLink = styled(Link)`
   color: #fff;
-  display: top;
+  display: flex;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
@@ -38,13 +38,13 @@ export const NavLink = styled(Link)`
 export const Bars = styled(FaBars)`
   display: none;
   color: #fff;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     display: block;
     position: absolute;
     top: 0;
     right: 0;
     transform: translate(-100%, 75%);
-    font-size: 1.8rem;
+    font-size: 1rem;
     cursor: pointer;
   }
 `;
@@ -52,19 +52,23 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 60px;
+ 
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     display: none;
+    font-size:0.7rem
+   
   }
 `;
 
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
+  margin-right: 24px
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width:812px) {
     display: none;
+    font-size:0.5rem
   }
 `;
 
@@ -78,7 +82,7 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-right: 24px;
+  margin-left: 24px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;

@@ -66,8 +66,9 @@ const Register = () => {
                 Register
               </Text>
               <Input
-                bg="#222"
-                color="white"
+                bg="rgb(48,47,47)"
+                color="black"
+                border="1.5px solid black"
                 textAlign="center"
                 type="name"
                 w="200px"
@@ -76,10 +77,10 @@ const Register = () => {
                 }}
                 mt="10px"
                 mb="10px"
-                placeholder="Name"
+                placeholder="Your Name..."
               />
               <Input
-                bg="#222"
+                bg="rgb(48,47,47)"
                 w="200px"
                 color="white"
                 textAlign="center"
@@ -92,7 +93,7 @@ const Register = () => {
                 type="email"
               />{' '}
               <Input
-                bg="#222"
+                bg="rgb(48,47,47)"
                 id="resetPasswordButton"
                 color="white"
                 textAlign="center"
@@ -103,7 +104,12 @@ const Register = () => {
                 onChange={e => setPassword(e.target.value)}
               />
               <br />
-              <Button bg="#777" onClick={signup}>
+              <Button
+                _hover={{ background: 'rgb(48,47,47)' }}
+                color="white"
+                bg="#777"
+                onClick={signup}
+              >
                 Register
               </Button>
               <Box fontSize="15" mb="111">

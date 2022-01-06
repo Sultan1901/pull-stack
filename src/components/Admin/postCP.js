@@ -174,7 +174,7 @@ const PostCP = () => {
                 <>
                   {state.postRD.post.map(e => (
                     <>
-                      <Box key={e._id} border="solid 2px silver">
+                      <Box w='750px' p='3' key={e._id} border="solid 2px silver">
                         {' '}
                         <VStack>
                           {' '}

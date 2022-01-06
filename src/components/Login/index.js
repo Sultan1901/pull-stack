@@ -91,7 +91,7 @@ const Login = () => {
                     <h1>Login</h1>
                     <VStack mt="4">
                       <Input
-                        bg="#201f1e"
+                        bg="rgb(48,47,47)"
                         w="197px"
                         color="white"
                         textAlign="center"
@@ -103,7 +103,7 @@ const Login = () => {
                       <br />
 
                       <Input
-                        bg="#201f1e"
+                        bg="rgb(48,47,47)"
                         color="white"
                         textAlign="center"
                         type="password"
@@ -115,7 +115,12 @@ const Login = () => {
                       />
 
                       <br />
-                      <Button bg="#777" onClick={logIn}>
+                      <Button
+                        _hover={{ background: 'rgb(48,47,47)' }}
+                        color="white"
+                        bg="#777"
+                        onClick={logIn}
+                      >
                         Login
                       </Button>
                       <Link onClick={re1}>Don't Have Account</Link>

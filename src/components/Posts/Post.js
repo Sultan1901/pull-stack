@@ -223,7 +223,7 @@ export default function Post() {
                     <Text
                       h="100"
                       pt="33"
-                      boxShadow="dark-lg"
+                      boxShadow="md"
                       borderRadius="3"
                       bg="white"
                       m="8"

@@ -54,6 +54,12 @@ const News = () => {
             <VStack>
               {' '}
               <Box
+                bg="red"
+                transition="0.3s ease-in-out"
+                _hover={{
+                  transition: '0.3s ease-in-out',
+                  transform: 'scale(1.02)',
+                }}
                 mt="10"
                 boxShadow="dark-lg"
                 position="relative"
@@ -65,24 +71,35 @@ const News = () => {
                 mb="10"
                 overflow="hidden"
               >
-                <Image w="100%" height="300" src={e.urlToImage} />
-                <Text p="3">{e.title}</Text>
-                <Text mt="5" fontSize="12px" p="3">
-                  {e.content}
-                </Text>
+                <Box>
+                  <Image w="100%" height="300" src={e.urlToImage} />
+                  <Text p="3" wordBreak="10">
+                    {e.title}
+                  </Text>
+                  <Text
+                    wordBreak="break-all"
+                    mt="5"
+                    fontSize="12px"
+                    p="3"
+                    m="0"
+                  >
+                    {e.content}
+                  </Text>
 
-                <br />
-                <Link
-                  position="absolute"
-                  color="rgb(57, 123, 245)"
-                  target="blank"
-                  bottom="0"
-                  href={e.url}
-                  fontSize="15px"
-                  marginLeft="170"
-                >
-                  More
-                </Link>
+                  <br />
+                  <Link
+                    position="absolute"
+                    color="rgb(57, 123, 245)"
+                    target="blank"
+                    bottom="0"
+                    href={e.url}
+                    fontSize="15px"
+                    mb="6px"
+                    ml="-15px"
+                  >
+                    More
+                  </Link>
+                </Box>
               </Box>
             </VStack>
           ))}{' '}
