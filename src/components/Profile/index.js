@@ -94,7 +94,6 @@ const User = () => {
                                   as="strong"
                                   fontSize="15px"
                                   fontFamily="Roman"
-                                  color="gold"
                                 >
                                   {e.like.length}
                                 </Text>{' '}

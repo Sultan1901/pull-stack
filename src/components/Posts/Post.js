@@ -183,7 +183,7 @@ export default function Post() {
                       <Link
                         onClick={() => Nav(`/profile/${item.userId._id}`)}
                         mr="400"
-                        color="gold"
+                        color="black"
                         fontSize="12px"
                         as="strong"
                       >
@@ -214,7 +214,7 @@ export default function Post() {
                           as="strong"
                           fontSize="12px"
                           fontFamily="Roman"
-                          color="gold"
+                          color="black"
                         >
                           {item.vot.length}
                         </Text>
