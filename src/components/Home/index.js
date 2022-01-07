@@ -51,7 +51,7 @@ const News = () => {
           w="190"
         ></Input>
         <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
-          {news.length == 0 ? (
+          {news.length === 0 ? (
            
             <>
               <VStack h='100%' position='relative'  >

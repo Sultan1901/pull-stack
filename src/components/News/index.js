@@ -51,7 +51,7 @@ const News = () => {
       <HStack>
         {' '}
         <SimpleGrid m="30" columns={1} spacing={5}>
-          {news.length == 0 ? (
+          {news.length === 0 ? (
             <>
               <VStack alignItems="center" h="100%">
                 <CircularProgress
