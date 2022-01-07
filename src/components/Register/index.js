@@ -58,7 +58,7 @@ const Register = () => {
             mt="30px"
             textAlign="center"
             bg="#fffb"
-            color="black"
+            color="white"
             mb="20"
           >
             <VStack>
