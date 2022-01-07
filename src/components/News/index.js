@@ -23,7 +23,7 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-03&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-07&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
