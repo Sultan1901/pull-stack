@@ -4,7 +4,7 @@ import './style.css';
 
 const Footer = () => {
   return (
-    <Box  pt="150" bg="rgba(242, 242, 242, 1)">
+    <Box  bg="rgba(242, 242, 242, 1)">
       <div>
         <div class="footer-basic">
           <footer>

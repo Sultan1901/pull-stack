@@ -38,15 +38,15 @@ export const NavLink = styled(Link)`
 export const Bars = styled(FaBars)`
   display: none;
   color: #fff;
-  @media screen and (max-width: 812px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1rem;
-    cursor: pointer;
-  }
+  // @media screen and (max-width: 812px) {
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   transform: translate(-100%, 75%);
+  //   font-size: 1rem;
+  //   cursor: pointer;
+  // }
 `;
 
 export const NavMenu = styled.div`
@@ -55,7 +55,7 @@ export const NavMenu = styled.div`
  
 
   @media screen and (max-width: 812px) {
-    display: none;
+    // display: none;
     font-size:0.7rem
    
   }

@@ -37,7 +37,7 @@ const News = () => {
   return (
     <Box bg="rgba(242, 242, 242, 1)" p="5">
       <VStack>
-        <Text mt="30" mb="12" color="rgb(48,47,47)" fontSize="3rem">
+        <Text mt="0" mb="12" color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
         </Text>
         <Input
@@ -54,14 +54,15 @@ const News = () => {
           {news.length === 0 ? (
            
             <>
-              <VStack h='100%' position='relative'  >
+              <VStack m='1' h='100%' position='relative'  >
               
                 <CircularProgress
-                p='22px'
                 
                   size="120px"
-                  position='fixed'
-                  pl='7'
+                  mt='3'
+                  mb='3'
+                  position=''
+                  ml='100%'
                   isIndeterminate
                   color="blue.300"
                 />

@@ -86,16 +86,16 @@ const MyProfile = () => {
                           textAlign="center"
                           defaultValue={e.email}
                           onChange={e => {
-                            setEmail(e.target.value);
+                            setEmail(e.target.value );
                           }}
                           placeholder="Email"
                         />
                         <Input
                           w="100"
-                          defaultValue={e.img}
+                          Value={e.img}
                           textAlign="center"
                           onChange={e => {
-                            setImg(e.target.value);
+                            setImg(e.target.value );
                           }}
                           placeholder="Image"
                         />
