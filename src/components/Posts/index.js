@@ -186,7 +186,6 @@ const Posts = () => {
                   _hover={{
                     transition: '0.3s ease-in-out',
                     transform: 'scale(1.02)',
-                    color: 'rgb(255, 166, 0)',
                   }}
                 >
                   <HStack>

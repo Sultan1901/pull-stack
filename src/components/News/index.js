@@ -8,6 +8,7 @@ import {
   Input,
   SimpleGrid,
   Image,
+  CircularProgress,
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -32,7 +33,7 @@ const News = () => {
           console.log(data);
         });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -50,42 +51,58 @@ const News = () => {
       <HStack>
         {' '}
         <SimpleGrid m="30" columns={1} spacing={5}>
-          {news.map(e => (
-            <Box
-              position="relative"
-              color="black"
-              background="#E2E8F0"
-              width="100%"
-              height="100%"
-              borderRadius="3"
-              shadow="md"
-              bg="rgba(252, 252, 252, 0.815)"
-            >
-              <HStack>
-                {' '}
-                <Image w="200px" height="200px" src={e.urlToImage} />
-                <VStack>
+          {news.length == 0 ? (
+            <>
+              <VStack alignItems="center" h="100%">
+                <CircularProgress
+                  p="22px"
+                  left="500"
+                  size="120px"
+                  isIndeterminate
+                  color="blue.300"
+                />
+              </VStack>
+            </>
+          ) : (
+            news.map(e => (
+              <Box
+                position="relative"
+                color="black"
+                background="#E2E8F0"
+                width="100%"
+                height="100%"
+                borderRadius="3"
+                shadow="md"
+                bg="rgba(252, 252, 252, 0.815)"
+              >
+                <HStack>
                   {' '}
-                  <Text mb="20">{e.title}</Text>
-                  <Text mt="5" fontSize="12px">
-                    {e.content}
-                  </Text>
-                </VStack>
-                <br />
-              <Box pt='200px'>  <Link
-                  target="blank"
-                  color="rgb(57, 123, 245)"
-                  href={e.url}
-                  fontSize="15px"
-                  top='100'
-                  pr="3"
-                  
-                >
-                  More
-                </Link></Box>
-              </HStack>
-            </Box>
-          ))}{' '}
+                  <Image w="200px" height="200px" src={e.urlToImage} />
+                  <VStack>
+                    {' '}
+                    <Text mb="20">{e.title}</Text>
+                    <Text mt="5" fontSize="12px">
+                      {e.content}
+                    </Text>
+                  </VStack>
+                  <br />
+                  <Box pt="200px">
+                    {' '}
+                    <Link
+                      target="blank"
+                      color="rgb(57, 123, 245)"
+                      href={e.url}
+                      fontSize="15px"
+                      top="100"
+                      pr="3"
+                    >
+                      More
+                    </Link>
+                  </Box>
+                </HStack>
+              </Box>
+            ))
+          )}{' '}
         </SimpleGrid>{' '}
       </HStack>
     </Box>

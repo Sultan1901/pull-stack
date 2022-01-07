@@ -7,6 +7,7 @@ import {
   Input,
   SimpleGrid,
   Image,
+  CircularProgress,
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -50,59 +51,77 @@ const News = () => {
           w="190"
         ></Input>
         <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
-          {news.map(e => (
-            <VStack>
-              {' '}
-              <Box
-                bg="red"
-                transition="0.3s ease-in-out"
-                _hover={{
-                  transition: '0.3s ease-in-out',
-                  transform: 'scale(1.02)',
-                }}
-                mt="10"
-                boxShadow="md"
-                position="relative"
-                color="black"
-                background="rgba(201, 201, 201, 0.471)"
-                width="70%"
-                height="500px"
-                borderRadius="3"
-                mb="10"
-                overflow="hidden"
-              >
-                <Box>
-                  <Image w="100%" height="300" src={e.urlToImage} />
-                  <Text p="3" wordBreak="10">
-                    {e.title}
-                  </Text>
-                  <Text
-                    wordBreak="break-all"
-                    mt="5"
-                    fontSize="12px"
-                    p="3"
-                    m="0"
-                  >
-                    {e.content}
-                  </Text>
+          {news.length == 0 ? (
+           
+            <>
+              <VStack h='100%' position='relative'  >
+              
+                <CircularProgress
+                p='22px'
+                
+                  size="120px"
+                  position='fixed'
+                  pl='7'
+                  isIndeterminate
+                  color="blue.300"
+                />
+              </VStack>
+            </>
+          ) : (
+            news.map(e => (
+              <VStack>
+                {' '}
+                <Box
+                  bg="red"
+                  transition="0.3s ease-in-out"
+                  _hover={{
+                    transition: '0.3s ease-in-out',
+                    transform: 'scale(1.02)',
+                  }}
+                  mt="10"
+                  boxShadow="md"
+                  position="relative"
+                  color="black"
+                  background="rgba(201, 201, 201, 0.471)"
+                  width="70%"
+                  height="500px"
+                  borderRadius="3"
+                  mb="10"
+                  overflow="hidden"
+                >
+                  <Box>
+                    <Image w="100%" height="300" src={e.urlToImage} />
+                    <Text p="3" wordBreak="10">
+                      {e.title}
+                    </Text>
+                    <Text
+                      wordBreak="break-all"
+                      mt="5"
+                      fontSize="12px"
+                      p="3"
+                      m="0"
+                    >
+                      {e.content}
+                    </Text>
 
-                  <br />
-                  <Link
-                    position="absolute"
-                    color="rgb(57, 123, 245)"
-                    target="blank"
-                    bottom="0"
-                    href={e.url}
-                    fontSize="15px"
-                    mb="6px"
-                    ml="-15px"
-                  >
-                    More
-                  </Link>
+                    <br />
+                    <Link
+                      position="absolute"
+                      color="rgb(57, 123, 245)"
+                      target="blank"
+                      bottom="0"
+                      href={e.url}
+                      fontSize="15px"
+                      mb="6px"
+                      ml="-15px"
+                    >
+                      More
+                    </Link>
+                  </Box>
                 </Box>
-              </Box>
-            </VStack>
-          ))}{' '}
+              </VStack>
+            ))
+          )}{' '}
         </SimpleGrid>
       </VStack>
     </Box>
