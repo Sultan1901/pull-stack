@@ -67,7 +67,6 @@ const Register = () => {
               </Text>
               <Input
                 bg="rgb(48,47,47)"
-                color="black"
                 border="1.5px solid black"
                 textAlign="center"
                 type="name"
