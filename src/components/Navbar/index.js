@@ -33,7 +33,8 @@ const Navbar = () => {
   }, [state]);
 
   return (
-    <>
+  
+    <Box  width='100%' >
       <Nav>
         <NavLogo to="/">
           <Image
@@ -47,7 +48,7 @@ const Navbar = () => {
           />
         </NavLogo>
         <Bars />
-        <Box ml="650px" position="absolute" fontSize="15">
+        <Box mr='2' position='static' fontSize="15">
           <NavMenu>
             <NavLink to="/" activeStyle>
               Home
@@ -90,7 +91,7 @@ const Navbar = () => {
           </NavMenu>
         </Box>
       </Nav>
-    </>
+    </Box>
   );
 };
 export default Navbar;

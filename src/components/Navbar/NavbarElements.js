@@ -24,7 +24,7 @@ export const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding-left: 2.44rem;
+  padding-left: 1rem;
   height: 100%;
   cursor: pointer;
   &.active {
@@ -82,7 +82,7 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  margin-left: 24px;
+  margin-left: 12px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
