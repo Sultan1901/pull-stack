@@ -58,7 +58,7 @@ const User = () => {
             <div>
               {user.length &&
                 user.map(e => (
-                  <Box mt="100" boxShadow="dark-lg" mb="250" pb="4">
+                  <Box mt="100" boxShadow="md" mb="250" pb="4">
                     {' '}
                     <>
                       <VStack m="10">

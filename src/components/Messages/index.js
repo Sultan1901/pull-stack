@@ -74,7 +74,7 @@ function Message() {
                       {' '}
                       <Box
                         w="270%"
-                        boxShadow="dark-lg"
+                        boxShadow="md"
                         mt="20px"
                         h="70vh"
                         display="flex"

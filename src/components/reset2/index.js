@@ -55,7 +55,7 @@ const Reset2 = () => {
           {' '}
           <Box
             borderRadius="3px"
-            boxShadow="dark-lg"
+            boxShadow="md"
             textAlign="center"
             w="360px"
             bg="#fffb"

@@ -65,7 +65,7 @@ const MyProfile = () => {
             {user.length &&
               user.map(e => (
                 <Box key={e._id} mt="30" mb="250" pt="20" w="50">
-                  <VStack boxShadow="dark-lg" borderRadius="5">
+                  <VStack boxShadow="md" borderRadius="5">
                     <Image w="80px" mt="5" borderRadius="full" src={e.img} />
                     <Text>{e.username}</Text>
                     <Text>{e.email}</Text>

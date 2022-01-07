@@ -61,7 +61,7 @@ const News = () => {
                   transform: 'scale(1.02)',
                 }}
                 mt="10"
-                boxShadow="dark-lg"
+                boxShadow="md"
                 position="relative"
                 color="black"
                 background="rgba(201, 201, 201, 0.471)"

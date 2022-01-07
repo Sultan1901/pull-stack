@@ -52,7 +52,7 @@ const Register = () => {
         <VStack>
           <Box
             borderRadius="3px"
-            boxShadow="dark-lg"
+            boxShadow="md"
             w="400px"
             h="100%"
             mt="30px"
