@@ -37,7 +37,7 @@ const News = () => {
   return (
     <Box bg="rgba(242, 242, 242, 1)" p="5">
       <VStack>
-        <Text mt="0" mb="12" color="rgb(48,47,47)" fontSize="3rem">
+        <Text mt="0" mb="12"  color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
         </Text>
         <Input
@@ -50,19 +50,16 @@ const News = () => {
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
-        <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
+        <SimpleGrid  mt="20" columns={[1, 2]} spacing={0}>
           {news.length === 0 ? (
-           
             <>
-              <VStack m='1' h='100%' position='relative'  >
-              
+              <VStack bg='white' m="1" h="100%" position="relative">
                 <CircularProgress
-                
                   size="120px"
-                  mt='3'
-                  mb='3'
-                  position=''
-                  ml='100%'
+                  mt="3"
+                  mb="3"
+                  position=""
+                  ml="100%"
                   isIndeterminate
                   color="blue.300"
                 />
@@ -70,10 +67,10 @@ const News = () => {
             </>
           ) : (
             news.map(e => (
-              <VStack>
+              <VStack >
                 {' '}
                 <Box
-                  bg="red"
+                
                   transition="0.3s ease-in-out"
                   _hover={{
                     transition: '0.3s ease-in-out',
@@ -90,7 +87,7 @@ const News = () => {
                   mb="10"
                   overflow="hidden"
                 >
-                  <Box>
+                  <Box >
                     <Image w="100%" height="300" src={e.urlToImage} />
                     <Text p="3" wordBreak="10">
                       {e.title}

@@ -65,7 +65,7 @@ const MyProfile = () => {
             {user.length &&
               user.map(e => (
                 <Box key={e._id} mt="30" mb="250" pt="20" w="50">
-                  <VStack boxShadow="md" borderRadius="5">
+                  <VStack bg="white" boxShadow="md" borderRadius="5">
                     <Image w="80px" mt="5" borderRadius="full" src={e.img} />
                     <Text>{e.username}</Text>
                     <Text>{e.email}</Text>
@@ -86,7 +86,7 @@ const MyProfile = () => {
                           textAlign="center"
                           defaultValue={e.email}
                           onChange={e => {
-                            setEmail(e.target.value );
+                            setEmail(e.target.value);
                           }}
                           placeholder="Email"
                         />
@@ -95,7 +95,7 @@ const MyProfile = () => {
                           Value={e.img}
                           textAlign="center"
                           onChange={e => {
-                            setImg(e.target.value );
+                            setImg(e.target.value);
                           }}
                           placeholder="Image"
                         />

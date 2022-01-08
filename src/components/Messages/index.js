@@ -65,16 +65,17 @@ function Message() {
         <VStack>
           {' '}
           <Box color="white" h="200px" m="6" pb="300" w="280px">
-            <VStack>
+            <VStack >
               <>
                 {!loggedIn ? (
                   <>
                     <br />
-                    <VStack w="80%">
+                    <VStack  w="80%">
                       {' '}
                       <Box
                         w="270%"
                         boxShadow="md"
+                        bg='white'
                         mt="20px"
                         h="70vh"
                         display="flex"
