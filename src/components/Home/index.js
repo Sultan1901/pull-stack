@@ -35,7 +35,7 @@ const News = () => {
   };
 
   return (
-    <Box bg="rgba(242, 242, 242, 1)" p="5">
+    <Box  p="5">
       <VStack>
         <Text mt="0" mb="12"  color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
