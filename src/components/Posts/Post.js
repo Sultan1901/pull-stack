@@ -37,7 +37,7 @@ export default function Post() {
     result1();
 
     // eslint-disable-next-line
-  }, [post]);
+  }, [comments]);
   useEffect(() => {
     if (state.Login.token) {
       setLogedin(true);
@@ -48,7 +48,6 @@ export default function Post() {
   const { id } = useParams();
   useEffect(() => {
     result();
-
     // eslint-disable-next-line
   }, []);
 
