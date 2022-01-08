@@ -33,7 +33,11 @@ export default function Post() {
       postRD: state.PostRD,
     };
   });
+  useEffect(() => {
+    result1();
 
+    // eslint-disable-next-line
+  }, [post]);
   useEffect(() => {
     if (state.Login.token) {
       setLogedin(true);
@@ -44,18 +48,13 @@ export default function Post() {
   const { id } = useParams();
   useEffect(() => {
     result();
-    
+
     // eslint-disable-next-line
   }, []);
-   useEffect(() => {
-     result1();
-
-     // eslint-disable-next-line
-   }, [state]);
 
   const result = async () => {
     await axios
-      .get(`http://localhost:5000/getComments/${id}`, {
+      .get(`${BASE_URL}/getComments/${id}`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {
@@ -64,7 +63,7 @@ export default function Post() {
   };
   const result1 = async () => {
     await axios
-      .get(`http://localhost:5000/getPostById/${comments[0].postId._id}`, {
+      .get(`${BASE_URL}/getPostById/${comments[0].postId._id}`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {
