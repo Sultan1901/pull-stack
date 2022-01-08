@@ -221,7 +221,7 @@ export default function Post() {
                       </HStack>{' '}
                     </Box>
                     <Text
-                      h="100"
+                      
                       pt="33"
                       boxShadow="md"
                       borderRadius="3"

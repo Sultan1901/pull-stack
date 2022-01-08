@@ -69,6 +69,7 @@ export const NavBtn = styled.nav`
   @media screen and (max-width:812px) {
     display: none;
     font-size:0.5rem
+    
   }
 `;
 
