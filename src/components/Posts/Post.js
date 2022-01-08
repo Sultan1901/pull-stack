@@ -22,7 +22,6 @@ export default function Post() {
 
   const [newcomment, setNewComment] = useState('');
   const [post, setPost] = useState([]);
-  console.log(post);
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -45,16 +44,18 @@ export default function Post() {
   const { id } = useParams();
   useEffect(() => {
     result();
+    
     // eslint-disable-next-line
   }, []);
+   useEffect(() => {
+     result1();
 
-  useEffect(() => {
-    result1();
-    // eslint-disable-next-line
-  }, []);
+     // eslint-disable-next-line
+   }, [state]);
+
   const result = async () => {
     await axios
-      .get(`${BASE_URL}/getComments/${id}`, {
+      .get(`http://localhost:5000/getComments/${id}`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {
@@ -63,12 +64,11 @@ export default function Post() {
   };
   const result1 = async () => {
     await axios
-      .get(`${BASE_URL}/getPostById/${comments[0].postId._id}`, {
+      .get(`http://localhost:5000/getPostById/${comments[0].postId._id}`, {
         headers: { authorization: `Bearer ${state.Login.token}` },
       })
       .then(result => {
         setPost(result.data);
-        console.log(result.data);
       });
   };
   const addcomment = async postId => {
@@ -128,11 +128,40 @@ export default function Post() {
             padding="20px"
             borderRadius="4"
           >
+            {post.map(e => (
+              <>
+                {
+                  <>
+                    <HStack mb="5">
+                      <Image
+                        display="inline"
+                        w="8"
+                        h="8"
+                        borderRadius="full"
+                        src={e.userId.img}
+                      />
+                      <Link
+                        onClick={() => Nav(`/profile/${e.userId._id}`)}
+                        mr="400"
+                        color="black"
+                        fontSize="12px"
+                        as="strong"
+                      >
+                        by {e.userId.username}
+                      </Link>{' '}
+                    </HStack>{' '}
+                  </>
+                }{' '}
+              </>
+            ))}
             {comments.length && (
               <>
                 {' '}
-                {console.log(comments[0].postId._id)}
-                <Text mb="9" color="black" fontFamily="Roman" fontSize="20">
+                {}
+                <Text mb="9" color="black" fontFamily="Roman" fontSize="29">
+                  {comments[0].postId.title}
+                </Text>
+                <Text mb="9" color="black" fontFamily="Roman" fontSize="18">
                   {comments[0].postId.description}
                 </Text>
               </>
@@ -221,12 +250,12 @@ export default function Post() {
                       </HStack>{' '}
                     </Box>
                     <Text
-                      
                       pt="33"
+                      m="5"
+                      p="3"
                       boxShadow="md"
                       borderRadius="3"
                       bg="white"
-                      m="8"
                       color="black"
                       fontSize="15px"
                     >
