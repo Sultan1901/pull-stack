@@ -12,8 +12,9 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('JAVA');
+  const [text, setText] = useState('');
   const [news, SetNews] = useState([]);
+  
 
   useEffect(() => {
     result();
@@ -24,12 +25,13 @@ const News = () => {
       const data = await axios
         .get(
           // `https://newsapi.org/v2/top-headlines?country=sa&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
-          `https://techcrunch.com/wp-json/wp/v2/posts?per_page=100&context=embed`
+          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}&pa`
         )
         .then(result => {
           // SetNews(result.data.articles);
           SetNews(result.data);
-          console.log(result.data ,data);
+          // console.log(data);
+          console.log(result.data);
         });
     } catch (error) {}
   };
@@ -37,8 +39,8 @@ const News = () => {
   return (
     <Box p="5">
       <VStack>
-        <Text mt="0" mb="12" color="rgb(48,47,47)" fontSize="3rem">
-          Programmer News
+        <Text mt="0" mb="12" fontSize="3rem">
+          Pull-Stack-Developers
         </Text>
         <Input
           placeholder="Search News"
@@ -92,20 +94,14 @@ const News = () => {
                       height="300"
                       src={e.jetpack_featured_media_url}
                     />
-                    <Text p="3" wordBreak="10">
+                    <Text wordBreak='break-all' mt="5" p="3">
                       {e.title.rendered}
                     </Text>
-                    {/* <Text
-                      wordBreak="break-all"
-                      mt="5"
-                      fontSize="12px"
-                      p="3"
-                      m="0"
-                    >
-                      {e.content}
-                    </Text> */}
-
+                    {/* <Box><Text wordBreak='break-all' mt="5" fontSize="12px" p="3" m="0">
+                      {e.content.rendered}
+                    </Text></Box>  */}
                     <br />
+                    <Text fontSize="13px">On :{e.modified}</Text>{' '}
                     <Link
                       position="absolute"
                       color="rgb(57, 123, 245)"

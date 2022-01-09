@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 
 const News = () => {
-  const [text, setText] = useState('google');
+  const [text, setText] = useState('');
   const [news, SetNews] = useState([]);
 
   useEffect(() => {
@@ -24,11 +24,11 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `http://newsapi.org/v2/everything?q=${text}&from=2022-01-07&language=en&pageSize=100&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
-          SetNews(result.data.articles);
+          SetNews(result.data);
           // SetNews(result.data.results);
           console.log(data);
         });
@@ -38,13 +38,16 @@ const News = () => {
   };
   return (
     <Box p="5" bg="rgba(242, 242, 242, 1)">
-      <Text mb="12" color="rgb(100, 107, 119)" fontSize="3rem">
-        All News
+      <Text mt="0" mb="12" fontSize="3rem">
+        Pull-Stack-Developers
       </Text>
       <Input
         placeholder="Search News"
         textAlign="center"
         value={text}
+        cursor="default"
+        color="white"
+        bg="rgb(48,47,47)"
         onChange={e => setText(e.target.value)}
         w="190"
       ></Input>
@@ -77,13 +80,18 @@ const News = () => {
               >
                 <HStack>
                   {' '}
-                  <Image w="20vw" height="23.29vw" src={e.urlToImage} />
-                  <VStack w='100%' h='100%'>
+                  <Image
+                    w="20vw"
+                    height="23.29vw"
+                    src={e.jetpack_featured_media_url}
+                  />
+                  <VStack w="100%" h="100%">
                     {' '}
-                    <Text mb="20">{e.title}</Text>
-                    <Text mt="5" fontSize="12px">
-                      {e.content}
-                    </Text>
+                    <Text mb="20">{e.title.rendered}</Text>
+                    <Text mb="20">{e.title.rendered}</Text>
+                    {/* <Text w='100%' h='150px' maxHeight={'2px'} mt="5" fontSize="12px">
+                      {e.content.rendered}
+                    </Text> */}
                   </VStack>
                   <br />
                   <Box pt="200px">
