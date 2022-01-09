@@ -141,7 +141,8 @@ const Posts = () => {
                         textAlign="center"
                       ></Input>
                       <Input
-                        w="200px"
+                        w="300px"
+                        h="100px"
                         color="black"
                         onChange={e => {
                           setNewPost(e.target.value);
@@ -163,13 +164,23 @@ const Posts = () => {
                   ) : (
                     <></>
                   )}
-                  <Button
-                    bg="rgb(48,47,47)"
+                  {show ? (
+                    <Button
                     color="white"
-                    onClick={() => setshow(true)}
-                  >
-                    Add Post <AddIcon ml="2" />
-                  </Button>
+                      bg="rgb(216, 79, 79)"
+                      onClick={() => setshow(false)}
+                    >
+                      Cancel
+                    </Button>
+                  ) : (
+                    <Button
+                      bg="rgb(48,47,47)"
+                      color="white"
+                      onClick={() => setshow(true)}
+                    >
+                      Add Post <AddIcon ml="2" />
+                    </Button>
+                  )}
                 </>
               )}
             </VStack>
