@@ -29,7 +29,7 @@ const News = () => {
         .then(result => {
           // SetNews(result.data.articles);
           SetNews(result.data);
-          console.log(result.data);
+          console.log(result.data ,data);
         });
     } catch (error) {}
   };
