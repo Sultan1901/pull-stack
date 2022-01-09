@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { StarIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import {
   ChakraProvider,
@@ -263,9 +263,9 @@ export default function Post() {
                 );
               })
               .reverse()}{' '}
-            <Button bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
+            <ArrowBackIcon cursor='pointer' bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
               Back
-            </Button>{' '}
+            </ArrowBackIcon>{' '}
           </Box>
         </VStack>
       </ChakraProvider>
