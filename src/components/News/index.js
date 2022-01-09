@@ -74,7 +74,6 @@ const News = () => {
                 borderRadius="3"
                 shadow="md"
                 bg="rgba(252, 252, 252, 0.815)"
-                width="100%"
               >
                 <HStack>
                   {' '}
