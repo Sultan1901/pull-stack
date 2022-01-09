@@ -24,12 +24,12 @@ const News = () => {
       const data = await axios
         .get(
           // `https://newsapi.org/v2/top-headlines?country=sa&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
-          `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
+          `https://techcrunch.com/wp-json/wp/v2/posts?per_page=100&context=embed`
         )
         .then(result => {
           // SetNews(result.data.articles);
-          SetNews(result.data.results);
-          console.log(data);
+          SetNews(result.data);
+          console.log(result.data);
         });
     } catch (error) {}
   };
@@ -87,11 +87,15 @@ const News = () => {
                   overflow="hidden"
                 >
                   <Box>
-                    <Image w="100%" height="300" src={e.urlToImage} />
+                    <Image
+                      w="100%"
+                      height="300"
+                      src={e.jetpack_featured_media_url}
+                    />
                     <Text p="3" wordBreak="10">
-                      {e.title}
+                      {e.title.rendered}
                     </Text>
-                    <Text
+                    {/* <Text
                       wordBreak="break-all"
                       mt="5"
                       fontSize="12px"
@@ -99,7 +103,7 @@ const News = () => {
                       m="0"
                     >
                       {e.content}
-                    </Text>
+                    </Text> */}
 
                     <br />
                     <Link
@@ -107,7 +111,7 @@ const News = () => {
                       color="rgb(57, 123, 245)"
                       target="blank"
                       bottom="0"
-                      href={e.url}
+                      href={e.canonical_url}
                       fontSize="15px"
                       mb="6px"
                       ml="-15px"
