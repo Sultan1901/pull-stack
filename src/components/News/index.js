@@ -88,7 +88,6 @@ const News = () => {
                   <VStack w="100%" h="100%">
                     {' '}
                     <Text mb="20">{e.title.rendered}</Text>
-                    <Text mb="20">{e.title.rendered}</Text>
                     {/* <Text w='100%' h='150px' maxHeight={'2px'} mt="5" fontSize="12px">
                       {e.content.rendered}
                     </Text> */}
