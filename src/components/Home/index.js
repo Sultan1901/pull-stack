@@ -23,7 +23,7 @@ const News = () => {
     try {
       const data = await axios
         .get(
-          `https://newsapi.org/v2/everything?q=${text}&from=2022-01-07&language=en&sortBy=publishedAt&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
           // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
         )
         .then(result => {
@@ -35,9 +35,9 @@ const News = () => {
   };
 
   return (
-    <Box  p="5">
+    <Box p="5">
       <VStack>
-        <Text mt="0" mb="12"  color="rgb(48,47,47)" fontSize="3rem">
+        <Text mt="0" mb="12" color="rgb(48,47,47)" fontSize="3rem">
           Programmer News
         </Text>
         <Input
@@ -50,10 +50,10 @@ const News = () => {
           onChange={e => setText(e.target.value)}
           w="190"
         ></Input>
-        <SimpleGrid  mt="20" columns={[1, 2]} spacing={0}>
+        <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
           {news.length === 0 ? (
             <>
-              <VStack bg='white' m="1" h="100%" position="relative">
+              <VStack bg="white" m="1" h="100%" position="relative">
                 <CircularProgress
                   size="120px"
                   mt="3"
@@ -67,10 +67,9 @@ const News = () => {
             </>
           ) : (
             news.map(e => (
-              <VStack >
+              <VStack>
                 {' '}
                 <Box
-                
                   transition="0.3s ease-in-out"
                   _hover={{
                     transition: '0.3s ease-in-out',
@@ -87,7 +86,7 @@ const News = () => {
                   mb="10"
                   overflow="hidden"
                 >
-                  <Box >
+                  <Box>
                     <Image w="100%" height="300" src={e.urlToImage} />
                     <Text p="3" wordBreak="10">
                       {e.title}
