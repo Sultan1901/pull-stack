@@ -23,14 +23,12 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(`http://api.mediastack.com/v1/news?access_key=d92fabe5e337e24d52f512d0cf4d8279&keywords=${text}&languages=en&categories=technology`
-        )
+        .get(`https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`)
         .then(result => {
-          SetNews(result.data.data);
+          SetNews(result.data);
           // SetNews(result.data.results);
-          console.log(result.data.data);
-                    console.log(data);
-
+          console.log(result.data);
+          console.log(data);
         });
     } catch (error) {
       console.log(error);
@@ -80,13 +78,19 @@ const News = () => {
               >
                 <HStack>
                   {' '}
-                  <Image w="30vw"  alt="image" height="35.29vw" src={e.image} />
-                  <VStack  w="100%" h="100%">
+                  <Image
+                    w="22vw"
+                    alt="image"
+                    height="22.29vw"
+                    src={e.jetpack_featured_media_url}
+                  />
+                  <VStack w="100%" h="100%">
                     {' '}
-                    <Text mb="20">{e.title}</Text>
-                   <Box p='3'> <Text fontSize="12px">
-                      {e.description}
-                    </Text></Box>
+                    <Text mb="20">{e.title.rendered}</Text>
+                    {/* <Box p="3">
+                      {' '}
+                      <Text fontSize="12px">{e.description}</Text>
+                    </Box> */}
                   </VStack>
                   <br />
                   <Box pt="200px">
@@ -94,14 +98,13 @@ const News = () => {
                     <Link
                       target="blank"
                       color="rgb(57, 123, 245)"
-                      href={e.url}
+                      href={e.canonical_url}
                       fontSize="15px"
                       top="100"
                       pr="3"
                     >
                       More
                     </Link>
-                    
                   </Box>
                 </HStack>
               </Box>
