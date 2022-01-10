@@ -23,14 +23,14 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(
-          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`
-          // `https://newsdata.io/api/1/news?apikey=pub_316749a1f9e311947558934e30ad0011951a&q=${text}`
+        .get(`http://api.mediastack.com/v1/news?access_key=d92fabe5e337e24d52f512d0cf4d8279&keywords=${text}&languages=en&categories=technology`
         )
         .then(result => {
-          SetNews(result.data);
+          SetNews(result.data.data);
           // SetNews(result.data.results);
-          console.log(data);
+          console.log(result.data.data);
+                    // console.log(result.data);
+
         });
     } catch (error) {
       console.log(error);
@@ -80,17 +80,13 @@ const News = () => {
               >
                 <HStack>
                   {' '}
-                  <Image
-                    w="20vw"
-                    height="23.29vw"
-                    src={e.jetpack_featured_media_url}
-                  />
-                  <VStack w="100%" h="100%">
+                  <Image w="30vw"  alt="image" height="35.29vw" src={e.image} />
+                  <VStack  w="100%" h="100%">
                     {' '}
-                    <Text mb="20">{e.title.rendered}</Text>
-                    {/* <Text w='100%' h='150px' maxHeight={'2px'} mt="5" fontSize="12px">
-                      {e.content.rendered}
-                    </Text> */}
+                    <Text mb="20">{e.title}</Text>
+                   <Box p='3'> <Text fontSize="12px">
+                      {e.description}
+                    </Text></Box>
                   </VStack>
                   <br />
                   <Box pt="200px">
@@ -105,6 +101,7 @@ const News = () => {
                     >
                       More
                     </Link>
+                    
                   </Box>
                 </HStack>
               </Box>

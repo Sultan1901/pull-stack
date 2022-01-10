@@ -25,7 +25,7 @@ const News = () => {
       const data = await axios
         .get(
           // `https://newsapi.org/v2/top-headlines?country=sa&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
-          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}&pa`
+          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`
         )
         .then(result => {
           // SetNews(result.data.articles);
@@ -94,14 +94,14 @@ const News = () => {
                       height="300"
                       src={e.jetpack_featured_media_url}
                     />
-                    <Text wordBreak='break-all' mt="5" p="3">
+                    <Text wordBreak='break-all' mt='3'>
                       {e.title.rendered}
                     </Text>
                     {/* <Box><Text wordBreak='break-all' mt="5" fontSize="12px" p="3" m="0">
                       {e.content.rendered}
                     </Text></Box>  */}
                     <br />
-                    <Text fontSize="13px">On :{e.modified}</Text>{' '}
+                    <Text  fontSize="13px">On :{e.modified}</Text>{' '}
                     <Link
                       position="absolute"
                       color="rgb(57, 123, 245)"
