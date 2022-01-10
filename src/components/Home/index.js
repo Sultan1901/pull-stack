@@ -30,7 +30,7 @@ const News = () => {
         .then(result => {
           // SetNews(result.data.articles);
           SetNews(result.data);
-          // console.log(data);
+          console.log(data);
           console.log(result.data);
         });
     } catch (error) {}
