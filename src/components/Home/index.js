@@ -133,7 +133,6 @@ let myArr=[];
                     <Link
                       p="2"
                       borderRadius="15"
-                      color="rgb(57, 123, 245)"
                       target="blank"
                       bottom="0"
                       // href={e.canonical_url}
@@ -154,7 +153,6 @@ let myArr=[];
                     <Link
                       p="2"
                       borderRadius="15"
-                      color="rgb(57, 123, 245)"
                       target="blank"
                       bottom="0"
                       // href={e.canonical_url}
