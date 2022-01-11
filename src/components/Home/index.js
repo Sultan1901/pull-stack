@@ -14,8 +14,19 @@ import axios from 'axios';
 const News = () => {
   const [text, setText] = useState('');
   const [news, SetNews] = useState([]);
-  
-
+  const [long, setLong] = useState([
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px',
+    '500px'
+  ]);
+let myArr=[];
   useEffect(() => {
     result();
     // eslint-disable-next-line
@@ -68,7 +79,7 @@ const News = () => {
               </VStack>
             </>
           ) : (
-            news.map(e => (
+            news.map((e, i) => (
               <VStack>
                 {' '}
                 <Box
@@ -83,9 +94,9 @@ const News = () => {
                   color="black"
                   background="rgba(201, 201, 201, 0.471)"
                   width="70%"
-                  height="500px"
+                  height={long[i]}
                   borderRadius="3"
-                  mb="10"
+                  mb="1"
                   overflow="hidden"
                 >
                   <Box>
@@ -94,27 +105,73 @@ const News = () => {
                       height="300"
                       src={e.jetpack_featured_media_url}
                     />
-                    <Text wordBreak='break-all' mt='3'>
+                    <Text wordBreak="break-all" mt="3">
                       {e.title.rendered}
                     </Text>
-                    {/* <Box><Text wordBreak='break-all' mt="5" fontSize="12px" p="3" m="0">
-                      {e.content.rendered}
-                    </Text></Box>  */}
+                    <Box>
+                      <Text
+                        wordBreak="break-all"
+                        mt="5"
+                        fontSize="11px"
+                        p="3"
+                        m="0"
+                      >
+                        {' '}
+                        <h1
+                          dangerouslySetInnerHTML={{
+                            __html: e.content.rendered,
+                          }}
+                        />
+                      </Text>
+                    </Box>
                     <br />
-                    <Text  fontSize="13px">On :{e.modified}</Text>{' '}
+                    <Text fontSize="13px">On :{e.modified}</Text>{' '}
+                  </Box>
+                </Box>{' '}
+                <Box>
+                  {long[i] === '500px' ? (
                     <Link
-                      position="absolute"
+                      p="2"
+                      borderRadius="15"
                       color="rgb(57, 123, 245)"
                       target="blank"
                       bottom="0"
-                      href={e.canonical_url}
+                      // href={e.canonical_url}
                       fontSize="15px"
+                      onClick={() => {
+                        myArr = [...long];
+                        myArr[i] = '1000px';
+                        setLong(myArr);
+                      }}
                       mb="6px"
                       ml="-15px"
+                      bg="#302f2f"
+                      color="white"
                     >
                       More
                     </Link>
-                  </Box>
+                  ) : (
+                    <Link
+                      p="2"
+                      borderRadius="15"
+                      color="rgb(57, 123, 245)"
+                      target="blank"
+                      bottom="0"
+                      // href={e.canonical_url}
+                      fontSize="15px"
+                      onClick={() => {
+                        let myArr1 = [...long];
+                        myArr1[i] = '500px';
+                        setLong(myArr1);
+                      }}
+                      mb="6px"
+                      ml="-15px"
+                      bg="#302f2f"
+                      color="white"
+                    >
+                      Less
+                    </Link>
+                  )}{' '}
                 </Box>
               </VStack>
             ))
