@@ -14,6 +14,7 @@ import {
   Link,
   Image,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 
 export default function Post() {
@@ -94,6 +95,8 @@ export default function Post() {
     Nav('/posts');
   };
 
+    const toast = useToast();
+
   const addVot = async commentId => {
     try {
       const res = await axios.post(
@@ -129,26 +132,35 @@ export default function Post() {
             {post.map(s => (
               <>
                 {
-                  
-                    <HStack mb="5">
-                      <Image
-                        display="inline"
-                        w="8"
-                        h="8"
-                        borderRadius="full"
-                        src={s.userId.img}
-                      />
-                      <Link
-                        onClick={() => Nav(`/profile/${s.userId._id}`)}
-                        mr="400"
-                        color="black"
-                        fontSize="12px"
-                        as="strong"
-                      >
-                        by {s.userId.username}
-                      </Link>
-                    </HStack>
-                  
+                  <HStack mb="5">
+                    <Image
+                      display="inline"
+                      w="8"
+                      h="8"
+                      borderRadius="full"
+                      src={s.userId.img}
+                    />
+                    <Link
+                      onClick={() =>
+                        logedin
+                          ? Nav(`/profile/${s.userId._id}`)
+                          : toast({
+                              position: 'bottom-left',
+                              render: () => (
+                                <Box color="white" p={3} bg="red.500">
+                                  please log in
+                                </Box>
+                              ),
+                            })
+                      }
+                      mr="400"
+                      color="black"
+                      fontSize="12px"
+                      as="strong"
+                    >
+                      by {s.userId.username}
+                    </Link>
+                  </HStack>
                 }
               </>
             ))}
@@ -183,7 +195,13 @@ export default function Post() {
                       bg="rgb(48,47,47)"
                       color="white"
                       ml="4"
-                      onClick={e => addcomment(id)}
+                      onClick={() => {addcomment(id);toast({
+                        title: 'your Comment submitted successfully',
+
+                        status: 'success',
+                        duration: 4000,
+                        isClosable: true,
+                      });}}
                     >
                       {' '}
                       Reply
@@ -207,7 +225,18 @@ export default function Post() {
                         src={item.userId.img}
                       />{' '}
                       <Link
-                        onClick={() => Nav(`/profile/${item.userId._id}`)}
+                        onClick={() =>
+                          logedin
+                            ? Nav(`/profile/${item.userId._id}`)
+                            : toast({
+                                position: 'bottom-left',
+                                render: () => (
+                                  <Box color="white" p={3} bg="red.500">
+                                    please log in
+                                  </Box>
+                                ),
+                              })
+                        }
                         mr="400"
                         color="black"
                         fontSize="12px"
@@ -215,12 +244,7 @@ export default function Post() {
                       >
                         by {item.userId.username}
                       </Link>{' '}
-                      <Text
-                        color="black"
-                        onClick={() => Nav(`/profile/${item.userId._id}`)}
-                        mr="400"
-                        fontSize="12px"
-                      >
+                      <Text color="black" mr="400" fontSize="12px">
                         on {item.time.slice(0, 10)} {item.time.slice(11, 16)}
                       </Text>
                       <br />
@@ -232,7 +256,18 @@ export default function Post() {
                           w="3"
                           cursor="pointer"
                           color="#c5a087"
-                          onClick={() => addVot(item._id)}
+                          onClick={() =>
+                            logedin
+                              ? addVot(item._id)
+                              : toast({
+                                  position: 'bottom-left',
+                                  render: () => (
+                                    <Box color="white" p={3} bg="red.500">
+                                      please log in
+                                    </Box>
+                                  ),
+                                })
+                          }
                         >
                           Like{' '}
                         </StarIcon>
@@ -263,7 +298,13 @@ export default function Post() {
                 );
               })
               .reverse()}{' '}
-            <ArrowBackIcon cursor='pointer' bg="rgb(48,47,47)" color="white" mt="4" onClick={redirect}>
+            <ArrowBackIcon
+              cursor="pointer"
+              bg="rgb(48,47,47)"
+              color="white"
+              mt="4"
+              onClick={redirect}
+            >
               Back
             </ArrowBackIcon>{' '}
           </Box>

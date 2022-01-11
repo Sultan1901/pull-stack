@@ -14,6 +14,7 @@ import {
   Link,
   Image,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 
 const Posts = () => {
@@ -110,6 +111,7 @@ const Posts = () => {
       console.log(error);
     }
   };
+  const toast = useToast();
 
   return (
     <ChakraProvider theme={theme}>
@@ -156,6 +158,13 @@ const Posts = () => {
                         onClick={() => {
                           addpost();
                           setshow(false);
+                          toast({
+                            title: 'your post submitted successfully',
+
+                            status: 'success',
+                            duration: 4000,
+                            isClosable: true,
+                          });
                         }}
                       >
                         Submit
@@ -166,7 +175,7 @@ const Posts = () => {
                   )}
                   {show ? (
                     <Button
-                    color="white"
+                      color="white"
                       bg="rgb(216, 79, 79)"
                       onClick={() => setshow(false)}
                     >
@@ -207,7 +216,18 @@ const Posts = () => {
                       src={e.userId.img}
                     />
                     <Link
-                      onClick={() => Nav(`/profile/${e.userId._id}`)}
+                      onClick={() =>
+                        logedin
+                          ? Nav(`/profile/${e.userId._id}`)
+                          : toast({
+                              position: 'bottom-left',
+                              render: () => (
+                                <Box color="white" p={3} bg="red.500">
+                                  please log in
+                                </Box>
+                              ),
+                            })
+                      }
                       mr="400"
                       fontSize="12px"
                       as="strong"
@@ -230,7 +250,18 @@ const Posts = () => {
                     {' '}
                     <ChatIcon
                       cursor="pointer"
-                      onClick={() => Nav(`/post/${e._id}`)}
+                      onClick={() =>
+                        logedin
+                          ? Nav(`/post/${e._id}`)
+                          : toast({
+                              position: 'bottom-left',
+                              render: () => (
+                                <Box color="white" p={3} bg="red.500">
+                                  please log in
+                                </Box>
+                              ),
+                            })
+                      }
                       fontSize="13px"
                       fontFamily="mono"
                       color="black"
@@ -242,7 +273,18 @@ const Posts = () => {
                       w="3"
                       cursor="pointer"
                       color="#c5a087"
-                      onClick={() => addlike(e._id)}
+                      onClick={() =>
+                        logedin
+                          ? addlike(e._id)
+                          : toast({
+                              position: 'bottom-left',
+                              render: () => (
+                                <Box color="white" p={3} bg="red.500">
+                                  please log in
+                                </Box>
+                              ),
+                            })
+                      }
                     >
                       Like{' '}
                     </StarIcon>{' '}

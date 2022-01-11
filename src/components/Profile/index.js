@@ -53,10 +53,14 @@ const User = () => {
   return (
     <Box bg="rgba(242, 242, 242, 1)">
       <ChakraProvider theme={theme}>
-        <VStack>
+        <VStack h="100%">
           <Box w="50%">
-            <div>
-              {user.length &&
+            
+              {user.length === 0 ? (
+                <Box  h="309px">
+                  <Text fontSize='3rem' mt='35'>please Login</Text>
+                </Box>
+              ) : (
                 user.map(e => (
                   <Box mt="100" boxShadow="md" mb="250" pb="4">
                     {' '}
@@ -115,8 +119,8 @@ const User = () => {
                       </VStack>{' '}
                     </>
                   </Box>
-                ))}
-            </div>{' '}
+                ))
+              )}
           </Box>
         </VStack>
       </ChakraProvider>

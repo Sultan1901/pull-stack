@@ -9,6 +9,7 @@ import {
   theme,
   Input,
   Image,
+  useToast,
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
 
@@ -19,6 +20,7 @@ const MyProfile = () => {
   const [img, setImg] = useState('');
   const [flag, setFlag] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const toast = useToast();
 
   const state = useSelector(state => {
     return {
@@ -109,6 +111,14 @@ const MyProfile = () => {
                         setFlag(true);
                         if (flag) {
                           updateUser();
+                          toast({
+                            position: 'bottom-left',
+                            render: () => (
+                              <Box color="white" p={3} bg="green.500">
+                                your Profile updated successfully
+                              </Box>
+                            ),
+                          });
                         }
                       }}
                     >
