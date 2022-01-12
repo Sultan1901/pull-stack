@@ -8,8 +8,11 @@ import {
   SimpleGrid,
   Image,
   CircularProgress,
+  IconButton,
+  HStack,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { SearchIcon } from '@chakra-ui/icons';
 
 const News = () => {
   const [text, setText] = useState('');
@@ -53,16 +56,23 @@ let myArr=[];
         <Text mt="0" mb="12" fontSize="3rem">
           Pull-Stack-Developers
         </Text>
-        <Input
-          placeholder="Search News"
-          textAlign="center"
-          value={text}
-          cursor="default"
-          color="white"
-          bg="rgb(48,47,47)"
-          onChange={e => setText(e.target.value)}
-          w="190"
-        ></Input>
+        <HStack>
+          <Input
+            placeholder="Search News"
+            textAlign="center"
+            value={text}
+            cursor="default"
+            color="white"
+            bg="rgb(48,47,47)"
+            onChange={e => setText(e.target.value)}
+            w="190"
+          ></Input>
+          <IconButton
+            onClick={e => setText(e.target.value)}
+            aria-label="Search database"
+            icon={<SearchIcon />}
+          />
+        </HStack>
         <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
           {news.length === 0 ? (
             <>

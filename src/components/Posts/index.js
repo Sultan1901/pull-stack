@@ -15,6 +15,8 @@ import {
   Image,
   HStack,
   useToast,
+  CircularProgress,
+  Textarea,
 } from '@chakra-ui/react';
 
 const Posts = () => {
@@ -142,16 +144,15 @@ const Posts = () => {
                         placeholder="Title"
                         textAlign="center"
                       ></Input>
-                      <Input
-                        w="300px"
-                        h="100px"
+                      <Textarea 
+                        w="400px"
                         color="black"
                         onChange={e => {
                           setNewPost(e.target.value);
                         }}
                         placeholder="Description"
                         textAlign="center"
-                      ></Input>{' '}
+                      />{' '}
                       <Button
                         bg="rgb(48,47,47)"
                         color="white"
@@ -193,127 +194,138 @@ const Posts = () => {
                 </>
               )}
             </VStack>
-            {post
-              .map(e => (
-                <Box
-                  bg="white"
-                  borderRadius="4"
-                  boxShadow="md"
-                  p="2"
-                  mt="6"
-                  key={e._id}
-                  transition="0.3s ease-in-out"
-                  _hover={{
-                    transition: '0.3s ease-in-out',
-                    transform: 'scale(1.02)',
-                  }}
-                >
-                  <HStack>
-                    <Image
-                      display="inline"
-                      w="5"
-                      borderRadius="full"
-                      src={e.userId.img}
-                    />
-                    <Link
-                      onClick={() =>
-                        logedin
-                          ? Nav(`/profile/${e.userId._id}`)
-                          : toast({
-                              position: 'bottom-left',
-                              render: () => (
-                                <Box color="white" p={3} bg="red.500">
-                                  please log in
-                                </Box>
-                              ),
-                            })
-                      }
-                      mr="400"
-                      fontSize="12px"
-                      as="strong"
-                    >
-                      {e.userId.username}
-                    </Link>
-                    <Text color="black" fontSize="12px">
-                      on {e.time.slice(0, 10)} {e.time.slice(11, 16)}
-                    </Text>
-                  </HStack>
-                  <Text
-                    cursor="pointer"
-                    onClick={() => Nav(`/post/${e._id}`)}
-                    fontSize="18px"
-                    fontFamily="mono"
+            {post.length === 0 ? (
+              <CircularProgress
+                size="120px"
+                mt="3"
+                mb="3"
+                position=""
+                isIndeterminate
+                color="blue.300"
+              />
+            ) : (
+              post
+                .map(e => (
+                  <Box
+                    bg="white"
+                    borderRadius="4"
+                    boxShadow="md"
+                    p="2"
+                    mt="6"
+                    key={e._id}
+                    transition="0.3s ease-in-out"
+                    _hover={{
+                      transition: '0.3s ease-in-out',
+                      transform: 'scale(1.02)',
+                    }}
                   >
-                    {e.title}
-                  </Text>
-                  <HStack>
-                    {' '}
-                    <ChatIcon
+                    <HStack>
+                      <Image
+                        display="inline"
+                        w="5"
+                        borderRadius="full"
+                        src={e.userId.img}
+                      />
+                      <Link
+                        onClick={() =>
+                          logedin
+                            ? Nav(`/profile/${e.userId._id}`)
+                            : toast({
+                                position: 'bottom-left',
+                                render: () => (
+                                  <Box color="white" p={3} bg="red.500">
+                                    please log in
+                                  </Box>
+                                ),
+                              })
+                        }
+                        mr="400"
+                        fontSize="12px"
+                        as="strong"
+                      >
+                        {e.userId.username}
+                      </Link>
+                      <Text color="black" fontSize="12px">
+                        on {e.time.slice(0, 10)} {e.time.slice(11, 16)}
+                      </Text>
+                    </HStack>
+                    <Text
                       cursor="pointer"
-                      onClick={() =>
-                        logedin
-                          ? Nav(`/post/${e._id}`)
-                          : toast({
-                              position: 'bottom-left',
-                              render: () => (
-                                <Box color="white" p={3} bg="red.500">
-                                  please log in
-                                </Box>
-                              ),
-                            })
-                      }
-                      fontSize="13px"
+                      onClick={() => Nav(`/post/${e._id}`)}
+                      fontSize="18px"
                       fontFamily="mono"
-                      color="black"
-                    ></ChatIcon>
-                    <Text as="strong" fontSize="12">
-                      {e.commentId.length}
-                    </Text>{' '}
-                    <StarIcon
-                      w="3"
-                      cursor="pointer"
-                      color="#c5a087"
-                      onClick={() =>
-                        logedin
-                          ? addlike(e._id)
-                          : toast({
-                              position: 'bottom-left',
-                              render: () => (
-                                <Box color="white" p={3} bg="red.500">
-                                  please log in
-                                </Box>
-                              ),
-                            })
-                      }
                     >
-                      Like{' '}
-                    </StarIcon>{' '}
-                    )
-                    <Text as="strong" fontSize="12px" fontFamily="Roman">
-                      {e.like.length}
+                      {e.title}
                     </Text>
-                    <>
+                    <HStack>
                       {' '}
-                      {!logedin || e.userId._id !== state.Login.user._id ? (
-                        <></>
-                      ) : (
-                        <DeleteIcon
-                          w="3"
-                          cursor="pointer"
-                          position="end"
-                          marginBottom="33"
-                          onClick={() => {
-                            del(e._id);
-                          }}
-                        >
-                          delete
-                        </DeleteIcon>
-                      )}
-                    </>
-                  </HStack>{' '}
-                </Box>
-              ))
-              .reverse()}
+                      <ChatIcon
+                        cursor="pointer"
+                        onClick={() =>
+                          logedin
+                            ? Nav(`/post/${e._id}`)
+                            : toast({
+                                position: 'bottom-left',
+                                render: () => (
+                                  <Box color="white" p={3} bg="red.500">
+                                    please log in
+                                  </Box>
+                                ),
+                              })
+                        }
+                        fontSize="13px"
+                        fontFamily="mono"
+                        color="black"
+                      ></ChatIcon>
+                      <Text as="strong" fontSize="12">
+                        {e.commentId.length}
+                      </Text>{' '}
+                      <StarIcon
+                        w="3"
+                        cursor="pointer"
+                        color="#c5a087"
+                        onClick={() =>
+                          logedin
+                            ? addlike(e._id)
+                            : toast({
+                                position: 'bottom-left',
+                                render: () => (
+                                  <Box color="white" p={3} bg="red.500">
+                                    please log in
+                                  </Box>
+                                ),
+                              })
+                        }
+                      >
+                        Like{' '}
+                      </StarIcon>{' '}
+                      )
+                      <Text as="strong" fontSize="12px" fontFamily="Roman">
+                        {e.like.length}
+                      </Text>
+                      <>
+                        {' '}
+                        {!logedin || e.userId._id !== state.Login.user._id ? (
+                          <></>
+                        ) : (
+                          <DeleteIcon
+                            w="3"
+                            cursor="pointer"
+                            position="end"
+                            marginBottom="33"
+                            onClick={() => {
+                              del(e._id);
+                            }}
+                          >
+                            delete
+                          </DeleteIcon>
+                        )}
+                      </>
+                    </HStack>{' '}
+                  </Box>
+                ))
+                .reverse()
+            )}
           </Box>
         </VStack>
       </Box>
