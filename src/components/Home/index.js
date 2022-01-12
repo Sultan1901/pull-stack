@@ -10,6 +10,7 @@ import {
   CircularProgress,
   IconButton,
   HStack,
+  CloseButton,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { SearchIcon } from '@chakra-ui/icons';
@@ -160,9 +161,8 @@ let myArr=[];
                       More
                     </Link>
                   ) : (
-                    <Link
+                    <CloseButton
                       p="2"
-                      borderRadius="15"
                       target="blank"
                       bottom="0"
                       // href={e.canonical_url}
@@ -174,11 +174,10 @@ let myArr=[];
                       }}
                       mb="6px"
                       ml="-15px"
-                      bg="#302f2f"
-                      color="white"
+                     
                     >
-                      Less
-                    </Link>
+                      
+                    </CloseButton>
                   )}{' '}
                 </Box>
               </VStack>
