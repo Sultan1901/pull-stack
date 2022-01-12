@@ -15,6 +15,7 @@ import {
   Image,
   HStack,
   useToast,
+  CircularProgress,
 } from '@chakra-ui/react';
 
 export default function Post() {
@@ -164,7 +165,15 @@ export default function Post() {
                 }
               </>
             ))}
-            {comments.length && (
+            {comments.length === 0 ? (<CircularProgress
+                  size="120px"
+                  mt="3"
+                  mb="3"
+                  position=""
+                  
+                  isIndeterminate
+                  color="blue.300"
+                />) : (
               <>
                 {' '}
                 <Text mb="9" color="black" fontFamily="Roman" fontSize="29">

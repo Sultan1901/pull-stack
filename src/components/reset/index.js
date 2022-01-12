@@ -59,7 +59,7 @@ const Reset = () => {
             <Input
               m="10px"
               w="200px"
-              bg="#222"
+              bg="rgb(48,47,47)"
               color="white"
               textAlign="center"
               type="email"
