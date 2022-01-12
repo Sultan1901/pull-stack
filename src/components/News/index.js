@@ -23,12 +23,14 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(`https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`)
+        .get(`https://newsapi.org/v2/top-headlines?country=sa&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
+          // `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`
+          )
         .then(result => {
-          SetNews(result.data);
+          SetNews(result.data.articles);
           // SetNews(result.data.results);
-          console.log(result.data);
-          console.log(data);
+          console.log(result.data.articles);
+          
         });
     } catch (error) {
       console.log(error);
@@ -82,15 +84,15 @@ const News = () => {
                     w="22vw"
                     alt="image"
                     height="22.29vw"
-                    src={e.jetpack_featured_media_url}
+                    src={e.urlToImage}
                   />
                   <VStack w="100%" h="100%">
                     {' '}
-                    <Text mb="20">{e.title.rendered}</Text>
-                    {/* <Box p="3">
+                    <Text mb="20">{e.title}</Text>
+                    <Box p="3">
                       {' '}
                       <Text fontSize="12px">{e.description}</Text>
-                    </Box> */}
+                    </Box>
                   </VStack>
                   <br />
                   <Box pt="200px">
@@ -98,7 +100,7 @@ const News = () => {
                     <Link
                       target="blank"
                       color="rgb(57, 123, 245)"
-                      href={e.canonical_url}
+                      href={e.url}
                       fontSize="15px"
                       top="100"
                       pr="3"
