@@ -23,7 +23,7 @@ const News = () => {
   const result = async () => {
     try {
       const data = await axios
-        .get(z`https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`)
+        .get(`https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`)
         .then(result => {
           SetNews(result.data);
           // SetNews(result.data.results);
