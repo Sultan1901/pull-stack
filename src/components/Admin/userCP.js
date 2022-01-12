@@ -16,6 +16,8 @@ import {
 
 const UserCP = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const ROLE = process.env.REACT_APP_ROLE;
+
   const [user, setUser] = useState([]);
   const state = useSelector(state => {
     return {
@@ -52,8 +54,10 @@ const UserCP = () => {
     }
   };
 
+
   return (
     <ChakraProvider theme={theme}>
+      {state.Login.user.role === ROLE ?(
       <Box bg="rgba(0, 0, 0, 0.87)">
         <Link color="white" href="/userCp">
           Users cpanel
@@ -124,7 +128,8 @@ const UserCP = () => {
             ))}
           </Box>
         </VStack>
-      </Box>
+      </Box>):(        <Text h='344px' color="red" fontSize="4rem"> You have permission to visit this page</Text>
+)}
     </ChakraProvider>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Box,
   Text,
-  Link,
   VStack,
   Input,
   SimpleGrid,
@@ -141,7 +140,7 @@ let myArr=[];
                 </Box>{' '}
                 <Box>
                   {long[i] === '500px' ? (
-                    <Link
+                    <Text
                       p="2"
                       borderRadius="15"
                       target="blank"
@@ -155,11 +154,12 @@ let myArr=[];
                       }}
                       mb="6px"
                       ml="-15px"
+                      cursor="pointer"
                       bg="#302f2f"
                       color="white"
                     >
                       More
-                    </Link>
+                    </Text>
                   ) : (
                     <CloseButton
                       p="2"

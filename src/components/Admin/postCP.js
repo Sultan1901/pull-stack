@@ -15,12 +15,15 @@ import {
 } from '@chakra-ui/react';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+const ROLE = process.env.REACT_APP_ROLE;
+
 
 const PostCP = () => {
   const [newpost, setNewPost] = useState('');
   const [newcomment, setNewComment] = useState('');
 
   const dispatch = useDispatch();
+  
 
   const state = useSelector(state => {
     return state;
@@ -135,145 +138,154 @@ const PostCP = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="rgba(0, 0, 0, 0.87)">
-        <Link color="red" href="/userCp">
-          Users cpanel
-        </Link>
-        <br />
-        <Link color="red" href="/postCp">
-          Post cpanel
-        </Link>{' '}
-        <VStack>
-          {' '}
-          <Box
-            bg="rgba(6, 6, 7, 0.226)"
-            w="800px"
-            mt="1%"
-            m="2%"
-            border="solid 2px gray"
-            padding="20px"
-            borderRadius="4"
-          >
-            <VStack>
-              <Text color="white">POSTS</Text>
+    
+      {state.Login.user.role === ROLE ? (  <Box bg="rgba(0, 0, 0, 0.87)">
+          <Link color="red" href="/userCp">
+            Users cpanel
+          </Link>
+          <br />
+          <Link color="red" href="/postCp">
+            Post cpanel
+          </Link>{' '}
+          <VStack>  
+            
+            <Box
+              bg="rgba(6, 6, 7, 0.226)"
+              w="800px"
+              mt="1%"
+              m="2%"
+              border="solid 2px gray"
+              padding="20px"
+              borderRadius="4"
+            >
+              <VStack>
+                <Text color="white">POSTS</Text>
 
-              <HStack>
-                <Input
-                  w="200px"
-                  color="white"
-                  onChange={e => {
-                    setNewPost(e.target.value);
-                  }}
-                  placeholder="add Post"
-                />
-                <AddIcon cursor="pointer" color="white" onClick={addpost}>
-                  add Post
-                </AddIcon>
-              </HStack>
-              {newpost && newpost.length && (
-                <>
-                  {state.postRD.post.map(e => (
-                    <>
-                      <Box w='750px' p='3' key={e._id} border="solid 2px silver">
-                        {' '}
-                        <VStack>
+                <HStack>
+                  <Input
+                    w="200px"
+                    color="white"
+                    onChange={e => {
+                      setNewPost(e.target.value);
+                    }}
+                    placeholder="add Post"
+                  />
+                  <AddIcon cursor="pointer" color="white" onClick={addpost}>
+                    add Post
+                  </AddIcon>
+                </HStack>
+                {newpost && newpost.length && (
+                  <>
+                    {state.postRD.post.map(e => (
+                      <>
+                        <Box
+                          w="750px"
+                          p="3"
+                          key={e._id}
+                          border="solid 2px silver"
+                        >
                           {' '}
-                          <HStack>
+                          <VStack>
                             {' '}
-                            <Text color="white" fontSize="30px">
-                              {e.description}
-                            </Text>{' '}
-                            <DeleteIcon
-                              cursor="pointer"
-                              fontSize="16px"
-                              color="white"
-                              onClick={() => {
-                                del(e._id);
-                              }}
-                            >
-                              delete Post
-                            </DeleteIcon>
-                          </HStack>
-                          <Text color="white" fontSize="15px">
-                            IsDeleted: {e.isDel.toString()}
-                          </Text>{' '}
-                          <HStack>
-                            {' '}
-                            <Text color="red" fontSize="12px">
-                              By {e.userId.username}
-                            </Text>
-                            <Text color="white" fontSize="12px">
-                              on {e.time}
-                            </Text>
-                          </HStack>
-                        </VStack>
-                        <img alt="img" src={e.img} />
-                        {e.commentId.map(s => (
-                          <>
-                            <VStack key={s._id}>
+                            <HStack>
                               {' '}
-                              <HStack>
+                              <Text color="white" fontSize="30px">
+                                {e.description}
+                              </Text>{' '}
+                              <DeleteIcon
+                                cursor="pointer"
+                                fontSize="16px"
+                                color="white"
+                                onClick={() => {
+                                  del(e._id);
+                                }}
+                              >
+                                delete Post
+                              </DeleteIcon>
+                            </HStack>
+                            <Text color="white" fontSize="15px">
+                              IsDeleted: {e.isDel.toString()}
+                            </Text>{' '}
+                            <HStack>
+                              {' '}
+                              <Text color="red" fontSize="12px">
+                                By {e.userId.username}
+                              </Text>
+                              <Text color="white" fontSize="12px">
+                                on {e.time}
+                              </Text>
+                            </HStack>
+                          </VStack>
+                          <img alt="img" src={e.img} />
+                          {e.commentId.map(s => (
+                            <>
+                              <VStack key={s._id}>
                                 {' '}
-                                <Text color="white" fontSize="15px">
+                                <HStack>
                                   {' '}
-                                  Comment: {s.description}
-                                </Text>{' '}
-                                <DeleteIcon
-                                  cursor="pointer"
-                                  color="white"
-                                  font-size="15px"
-                                  onClick={() => {
-                                    delComment(s._id);
-                                  }}
-                                >
-                                  Delete Comment
-                                </DeleteIcon>{' '}
-                              </HStack>
-                            </VStack>
-                          </>
-                        ))}
-                        <VStack>
-                          {' '}
-                          <HStack>
+                                  <Text color="white" fontSize="15px">
+                                    {' '}
+                                    Comment: {s.description}
+                                  </Text>{' '}
+                                  <DeleteIcon
+                                    cursor="pointer"
+                                    color="white"
+                                    font-size="15px"
+                                    onClick={() => {
+                                      delComment(s._id);
+                                    }}
+                                  >
+                                    Delete Comment
+                                  </DeleteIcon>{' '}
+                                </HStack>
+                              </VStack>
+                            </>
+                          ))}
+                          <VStack>
                             {' '}
-                            <Input
-                              m="4"
-                              w="200px"
-                              color="white"
-                              onChange={e => {
-                                setNewComment(e.target.value);
-                              }}
-                              placeholder="add comment"
-                            />
-                            <AddIcon
-                              cursor="pointer"
-                              color="white"
-                              onClick={() => addcomment(e._id)}
-                            >
-                              add
-                            </AddIcon>
-                            <br />
-                            <StarIcon
-                              color="gold"
-                              cursor="pointer"
-                              onClick={() => addlike(e._id)}
-                            >
-                              Like{' '}
-                            </StarIcon>
-                            <Text m="2px" color="white">
-                              {e.like.length}
-                            </Text>
-                          </HStack>
-                        </VStack>
-                      </Box>
-                    </>
-                  ))}
-                </>
-              )}
-            </VStack>
-          </Box>
-        </VStack>
-      </Box>
+                            <HStack>
+                              {' '}
+                              <Input
+                                m="4"
+                                w="200px"
+                                color="white"
+                                onChange={e => {
+                                  setNewComment(e.target.value);
+                                }}
+                                placeholder="add comment"
+                              />
+                              <AddIcon
+                                cursor="pointer"
+                                color="white"
+                                onClick={() => addcomment(e._id)}
+                              >
+                                add
+                              </AddIcon>
+                              <br />
+                              <StarIcon
+                                color="gold"
+                                cursor="pointer"
+                                onClick={() => addlike(e._id)}
+                              >
+                                Like{' '}
+                              </StarIcon>
+                              <Text m="2px" color="white">
+                                {e.like.length}
+                              </Text>
+                            </HStack>
+                          </VStack>
+                        </Box>
+                      </>
+                    ))}
+                  </>
+                )}
+              </VStack>
+            </Box>
+         </VStack>
+        </Box> ) : (
+        <Text h='344px' color="red" fontSize="4rem"> You have permission to visit this page</Text>
+      )}
+      
     </ChakraProvider>
   );
 };
