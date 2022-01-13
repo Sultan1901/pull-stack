@@ -21,6 +21,7 @@ const ROLE = process.env.REACT_APP_ROLE;
 const PostCP = () => {
   const [newpost, setNewPost] = useState('');
   const [newcomment, setNewComment] = useState('');
+  const [local, setlocal] = useState(false);
 
   const dispatch = useDispatch();
   
@@ -28,6 +29,13 @@ const PostCP = () => {
   const state = useSelector(state => {
     return state;
   });
+  useEffect(() => {
+    if (state.Login.token) {
+      setlocal(true);
+    } else {
+      setlocal(false);
+    }
+  }, [state]);
 
   useEffect(() => {
     setNewPost(' ');
@@ -138,8 +146,8 @@ const PostCP = () => {
   };
   return (
     <ChakraProvider theme={theme}>
-    
-      {state.Login.user.role === ROLE ? (  <Box bg="rgba(0, 0, 0, 0.87)">
+      {state?.Login?.user?.role === ROLE && local ? (
+        <Box bg="rgba(0, 0, 0, 0.87)">
           <Link color="red" href="/userCp">
             Users cpanel
           </Link>
@@ -147,8 +155,7 @@ const PostCP = () => {
           <Link color="red" href="/postCp">
             Post cpanel
           </Link>{' '}
-          <VStack>  
-            
+          <VStack>
             <Box
               bg="rgba(6, 6, 7, 0.226)"
               w="800px"
@@ -281,11 +288,14 @@ const PostCP = () => {
                 )}
               </VStack>
             </Box>
-         </VStack>
-        </Box> ) : (
-        <Text h='344px' color="red" fontSize="4rem"> You have permission to visit this page</Text>
+          </VStack>
+        </Box>
+      ) : (
+        <Text h="344px" color="red" fontSize="4rem">
+          {' '}
+          Forbidden 403
+        </Text>
       )}
-      
     </ChakraProvider>
   );
 };
