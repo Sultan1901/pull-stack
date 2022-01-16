@@ -7,15 +7,16 @@ import {
   SimpleGrid,
   Image,
   CircularProgress,
-  IconButton,
   HStack,
   CloseButton,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { SearchIcon } from '@chakra-ui/icons';
+import {  ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 
 const News = () => {
   const [text, setText] = useState('');
+    const [page, setpage] = useState(1);
+
   const [news, SetNews] = useState([]);
   const [long, setLong] = useState([
     '500px',
@@ -33,13 +34,13 @@ let myArr=[];
   useEffect(() => {
     result();
     // eslint-disable-next-line
-  }, [text]);
+  }, [text ,page]);
   const result = async () => {
     try {
       const data = await axios
         .get(
           // `https://newsapi.org/v2/top-headlines?country=sa&category=technology&apiKey=941e34ca80a2416498f8b4c2b895c22d`
-          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}`
+          `https://techcrunch.com/wp-json/wp/v2/posts?search=${text}&page=${page}`
         )
         .then(result => {
           // SetNews(result.data.articles);
@@ -50,6 +51,12 @@ let myArr=[];
     } catch (error) {}
   };
 
+  const Npage = () => {
+    setpage(page + 1);
+  };
+  const Ppage = () => {
+    setpage(page - 1);
+  };
   return (
     <Box p="5">
       <VStack>
@@ -67,11 +74,30 @@ let myArr=[];
             onChange={e => setText(e.target.value)}
             w="190"
           ></Input>
-          <IconButton
-            onClick={e => setText(e.target.value)}
-            aria-label="Search database"
-            icon={<SearchIcon />}
-          />
+
+          
+        </HStack>
+        <HStack>
+          {' '}
+          <ArrowBackIcon
+            cursor="pointer"
+            _hover={{ background: 'rgb(48,47,47)' }}
+            color="white"
+            bg="#777"
+            onClick={Ppage}
+          >
+            previous
+          </ArrowBackIcon>
+          <Text> Page {page} of 2322</Text>
+          <ArrowForwardIcon
+            cursor="pointer"
+            _hover={{ background: 'rgb(48,47,47)' }}
+            color="white"
+            bg="#777"
+            onClick={Npage}
+          >
+            Next
+          </ArrowForwardIcon>
         </HStack>
         <SimpleGrid mt="20" columns={[1, 2]} spacing={0}>
           {news.length === 0 ? (
@@ -174,10 +200,7 @@ let myArr=[];
                       }}
                       mb="6px"
                       ml="-15px"
-                     
-                    >
-                      
-                    </CloseButton>
+                    ></CloseButton>
                   )}{' '}
                 </Box>
               </VStack>
