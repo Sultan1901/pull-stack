@@ -55,7 +55,7 @@ let myArr=[];
     setpage(page + 1);
   };
   const Ppage = () => {
-    setpage(page - 1);
+  if (page > 1){setpage(page - 1)} 
   };
   return (
     <Box p="5">
