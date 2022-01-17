@@ -123,9 +123,13 @@ const Login = () => {
                       >
                         Login
                       </Button>
-                      <Link onClick={re1}>Don't Have Account</Link>
+                      <Link fontSize={'14px'} onClick={re1}>
+                        Don't Have Account
+                      </Link>
 
-                      <Link onClick={re}>Forget password</Link>
+                      <Link fontSize={'14px'} onClick={re}>
+                        Forget password
+                      </Link>
                       <br />
                     </VStack>
                   </>
