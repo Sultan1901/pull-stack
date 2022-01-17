@@ -301,10 +301,7 @@ const Posts = () => {
                       <Text as="strong" fontSize="12">
                         {e.commentId.length}
                       </Text>{' '}
-                      {/* {console.log(e.like)}
-                      {console.log(
-                        e.like.some(l => l.userId === state.Login.user._id)
-                      )} */}
+                     
                       {!e.like.some(l => l.userId === state.Login.user?._id ) ? (
                         <StarIcon
                           w="3"
@@ -362,9 +359,8 @@ const Posts = () => {
                             onClick={() => {
                               del(e._id);
                             }}
-                          >
-                            delete
-                          </DeleteIcon>
+                         />
+                           
                         )}
                       </>
                     </HStack>{' '}
