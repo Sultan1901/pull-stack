@@ -55,6 +55,7 @@ const Posts = () => {
       })
       .then(result => {
         setPost(result.data);
+        //  setLikeid()
         console.log(data);
       });
   };
@@ -113,6 +114,26 @@ const Posts = () => {
       console.log(error);
     }
   };
+  const dellike = async id => {
+    console.log(id);
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/deleteLike/${id._id}`,
+        {},
+
+        {
+          headers: {
+            Authorization: `Bearer ${state.Login.token}`,
+          },
+        }
+      );
+
+      result();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const toast = useToast();
 
   return (
@@ -144,7 +165,7 @@ const Posts = () => {
                         placeholder="Title"
                         textAlign="center"
                       ></Input>
-                      <Textarea 
+                      <Textarea
                         w="400px"
                         color="black"
                         onChange={e => {
@@ -280,26 +301,40 @@ const Posts = () => {
                       <Text as="strong" fontSize="12">
                         {e.commentId.length}
                       </Text>{' '}
-                      <StarIcon
-                        w="3"
-                        cursor="pointer"
-                        color="#c5a087"
-                        onClick={() =>
-                          logedin
-                            ? addlike(e._id)
-                            : toast({
-                                position: 'bottom-left',
-                                render: () => (
-                                  <Box color="white" p={3} bg="red.500">
-                                    please log in
-                                  </Box>
-                                ),
-                              })
-                        }
-                      >
-                        Like{' '}
-                      </StarIcon>{' '}
-                      )
+                      {console.log(e.like)}
+                      {console.log(
+                        e.like.some(l => l.userId === state.Login.user._id)
+                      )}
+                      {!e.like.some(l => l.userId === state.Login.user._id) ? (
+                        <StarIcon
+                          w="3"
+                          cursor="pointer"
+                          color="silver"
+                          onClick={() => addlike(e._id)}
+                        />
+                      ) : (
+                        <StarIcon
+                          w="3"
+                          cursor="pointer"
+                          color="#c5a087"
+                          onClick={() =>
+                            logedin
+                              ? dellike(
+                                  e.like.find(
+                                    l => l.userId === state.Login.user._id
+                                  )
+                                )
+                              : toast({
+                                  position: 'bottom-left',
+                                  render: () => (
+                                    <Box color="white" p={3} bg="red.500">
+                                      please log in
+                                    </Box>
+                                  ),
+                                })
+                          }
+                        />
+                      )}
                       <Text as="strong" fontSize="12px" fontFamily="Roman">
                         {e.like.length}
                       </Text>

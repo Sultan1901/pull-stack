@@ -96,7 +96,7 @@ export default function Post() {
     Nav('/posts');
   };
 
-    const toast = useToast();
+  const toast = useToast();
 
   const addVot = async commentId => {
     try {
@@ -105,6 +105,26 @@ export default function Post() {
         {
           commentId: commentId,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${state.Login.token}`,
+          },
+        }
+      );
+
+      result();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const delVot = async id => {
+    console.log(id);
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/deleteVot/${id._id}`,
+        {},
+
         {
           headers: {
             Authorization: `Bearer ${state.Login.token}`,
@@ -165,15 +185,16 @@ export default function Post() {
                 }
               </>
             ))}
-            {comments.length === 0 ? (<CircularProgress
-                  size="120px"
-                  mt="3"
-                  mb="3"
-                  position=""
-                  
-                  isIndeterminate
-                  color="blue.300"
-                />) : (
+            {comments.length === 0 ? (
+              <CircularProgress
+                size="120px"
+                mt="3"
+                mb="3"
+                position=""
+                isIndeterminate
+                color="blue.300"
+              />
+            ) : (
               <>
                 {' '}
                 <Text mb="9" color="black" fontFamily="Roman" fontSize="29">
@@ -204,13 +225,16 @@ export default function Post() {
                       bg="rgb(48,47,47)"
                       color="white"
                       ml="4"
-                      onClick={() => {addcomment(id);toast({
-                        title: 'your Comment submitted successfully',
+                      onClick={() => {
+                        addcomment(id);
+                        toast({
+                          title: 'your Comment submitted successfully',
 
-                        status: 'success',
-                        duration: 4000,
-                        isClosable: true,
-                      });}}
+                          status: 'success',
+                          duration: 4000,
+                          isClosable: true,
+                        });
+                      }}
                     >
                       {' '}
                       Reply
@@ -261,25 +285,50 @@ export default function Post() {
                     </HStack>
                     <Box mt="5" position="right">
                       <HStack>
-                        <StarIcon
-                          w="3"
-                          cursor="pointer"
-                          color="#c5a087"
-                          onClick={() =>
-                            logedin
-                              ? addVot(item._id)
-                              : toast({
-                                  position: 'bottom-left',
-                                  render: () => (
-                                    <Box color="white" p={3} bg="red.500">
-                                      please log in
-                                    </Box>
-                                  ),
-                                })
-                          }
-                        >
-                          Like{' '}
-                        </StarIcon>
+                        {!item.vot.some(
+                          v => v.userId === state.Login.user._id
+                        ) ? (
+                          <StarIcon
+                            w="3"
+                            cursor="pointer"
+                            color="silver"
+                            onClick={() =>
+                              logedin
+                                ? addVot(item._id)
+                                : toast({
+                                    position: 'bottom-left',
+                                    render: () => (
+                                      <Box color="white" p={3} bg="red.500">
+                                        please log in
+                                      </Box>
+                                    ),
+                                  })
+                            }
+                          />
+                        ) : (
+                          <StarIcon
+                            w="3"
+                            cursor="pointer"
+                            color="#c5a087"
+                            onClick={() =>
+                              logedin
+                                ? delVot(
+                                    item.vot.find(
+                                      l => l.userId === state.Login.user._id
+                                    )
+                                  )
+                                : toast({
+                                    position: 'bottom-left',
+                                    render: () => (
+                                      <Box color="white" p={3} bg="red.500">
+                                        please log in
+                                      </Box>
+                                    ),
+                                  })
+                            }
+                          />
+                        )}
+
                         <Text
                           as="strong"
                           fontSize="12px"
