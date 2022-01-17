@@ -310,7 +310,18 @@ const Posts = () => {
                           w="3"
                           cursor="pointer"
                           color="silver"
-                          onClick={() => addlike(e._id)}
+                          onClick={() =>
+                            logedin
+                              ? addlike(e._id)
+                              : toast({
+                                  position: 'bottom-left',
+                                  render: () => (
+                                    <Box color="white" p={3} bg="red.500">
+                                      please log in
+                                    </Box>
+                                  ),
+                                })
+                          }
                         />
                       ) : (
                         <StarIcon
