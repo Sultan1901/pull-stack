@@ -286,7 +286,7 @@ export default function Post() {
                     <Box mt="5" position="right">
                       <HStack>
                         {!item.vot.some(
-                          v => v.userId === state.Login.user._id
+                          v => v.userId === state.Login.user?._id
                         ) ? (
                           <StarIcon
                             w="3"
