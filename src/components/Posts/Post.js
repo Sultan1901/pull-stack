@@ -383,7 +383,7 @@ export default function Post() {
                   <hr />
                 </div>
               );
-            })}{' '}
+            }).reverse()}{' '}
             <ArrowBackIcon
               cursor="pointer"
               bg="rgb(48,47,47)"
